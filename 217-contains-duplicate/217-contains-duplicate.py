@@ -4,11 +4,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-        dic = {}
+        dic = set()
         
         for i in range(len(nums)):
             if nums[i] in dic:
                 return True
            
-            dic[nums[i]] = i
+            dic.add(nums[i])
         return False
+    
+       
