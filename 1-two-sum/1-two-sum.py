@@ -8,11 +8,9 @@ class Solution(object):
         """
         
         dic = {}
-        
         for i in range(len(nums)):
-            comp = target - nums[i]
-            
-            if comp in dic:
-                return [ dic[comp],i]
+            c = target - nums[i]
+            if c in dic:
+                return [dic[c],i]
             else:
                 dic[nums[i]] = i
