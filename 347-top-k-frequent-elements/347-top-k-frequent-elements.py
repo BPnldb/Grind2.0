@@ -9,7 +9,9 @@ class Solution(object):
         #Time:O(N)
         #Space:O(N)
         count = {}
-        freq = [[] for i in range(len(nums) + 1)] #list of list
+        freq = []
+        for i in range(len(nums)+1):
+            freq.append([])
         print(freq)
         for i in nums:
             count[i] = 1 + count.get(i,0)
