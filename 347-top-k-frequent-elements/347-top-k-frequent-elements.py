@@ -5,6 +5,9 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
+        
+        #Time:O(N)
+        #Space:O(N)
         count = {}
         freq = [[] for i in range(len(nums) + 1)] #list of list
         print(freq)
