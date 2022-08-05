@@ -4,13 +4,10 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-        dic = set()
+        freq = set()
         
         for i in range(len(nums)):
-            if nums[i] in dic:
+            if nums[i] in freq:
                 return True
-           
-            dic.add(nums[i])
+            freq.add(nums[i])
         return False
-    
-       
