@@ -5,27 +5,24 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
+        freq = {}
         
-        
-        
-        #Time Complexity : O(N) = 2N
-        # Spaec Complexity: O(n)
-        dic = {}
-        
-        for i in range(len(s)):
-            if s[i] not in dic:
-                dic[s[i]] = 1
+        for i in s:
+            if i not in freq:
+                freq[i] = 1
             else:
-                dic[s[i]] += 1
-        
-        for i in range(len(t)):
-            if t[i] not in dic:
-                dic[t[i]] = 1
+                freq[i] += 1
+        for i in t:
+            if i in freq:
+                if freq[i] > 0:
+                    freq[i] -= 1
             else:
-                if dic[t[i]] > 0:
-                    dic[t[i]] -= 1
-        
+                freq[i] = 1
+        print(freq)
         count = 0
-        for i in dic.values():
+        for i in freq.values():
             count += i
-        return True if count == 0 else False
+        if count == 0:
+            return True
+        else:
+            return False
