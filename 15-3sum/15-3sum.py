@@ -11,25 +11,26 @@ class Solution(object):
         nums.sort()
         
         #initialize an empty list/array
-        result = []
+        tripleList = []
         
         #up to len(nums) - 2 because worse cause the solution would be 
         # [nums[i],nums[i-2],nums[i-1]]
         
         
-        
-        for left in range(len(nums) - 2):
-            mid = left + 1
-            right = len(nums) - 1
-            
-            while mid < right:
-                curSum = nums[left] + nums[mid] + nums[right]
-                sumList = [nums[left],nums[mid],nums[right]]
+        for i in range(len(nums)-2):
+            left = i+1
+            right = len(nums) -1
+            while left < right:
+                curSum = nums[i] + nums[left] + nums[right]
+                sumList = [nums[i], nums[left] , nums[right]]
                 
-                if curSum == 0 and sumList not in result:
-                    result.append(sumList)
+                #check if curSum is 0 and NOT IN tripleList
+                if curSum == 0 and sumList not in tripleList:
+                    tripleList.append(sumList)
+                    left += 1
+                    right -= 1
                 elif curSum < 0:
-                    mid += 1
+                    left += 1
                 else:
                     right -= 1
-        return result
+        return tripleList
