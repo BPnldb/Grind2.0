@@ -12,7 +12,7 @@ class Solution(object):
         prefix , postfix = 1, 1
         
         for i in range(len(nums)):
-            res[i] *= prefix
+            res[i] = prefix
             prefix *= nums[i]
         print(res)
         
