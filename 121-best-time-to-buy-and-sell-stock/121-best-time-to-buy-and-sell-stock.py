@@ -10,9 +10,8 @@ class Solution(object):
         
         while right < len(prices):
             res = prices[right] - prices[left]
-            while res < 0:
-                left += 1
-                res = prices[right] - prices[left]
+            if res < 0:
+                left = right
             maxRes = max(maxRes, res)
             right += 1
         return maxRes
