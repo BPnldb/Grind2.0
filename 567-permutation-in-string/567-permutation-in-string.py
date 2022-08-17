@@ -24,27 +24,39 @@ class Solution(object):
                 
         
                 
-        if len(s1) > len(s2): return False
+        charFreq = {} # Keep track of all characters in s1 and their frequency
+        for char in s1:
+            if char not in charFreq:
+                charFreq[char] = 0
+            charFreq[char] += 1
         
-        s1Count = {}
-        s2Count = {}
+        matched = 0 # Keep track of how many characters in charFreq we have completely found
+        windowStart = 0
         
-        for i in range(len(s1)):
+        for windowEnd in range(len(s2)):
+            char = s2[windowEnd] # Current character we are on
             
-            s1Count[s1[i]] = 1 + s1Count.get(s1[i], 0)
-            s2Count[s2[i]] = 1 + s2Count.get(s2[i], 0)
+            if char in charFreq:
+                charFreq[char] -= 1
+                # If we found all instances of this character
+                if charFreq[char] == 0:
+                    matched += 1 # Increment matched by 1 since we have matched this character
             
-        if s1Count == s2Count: return True
-        
-        l = 0
-        for r in range(len(s1), len(s2)):
-            s2Count[s2[r]] = 1 + s2Count.get(s2[r], 0)
-            s2Count[s2[l]] -= 1
-            
-            if s2Count[s2[l]] == 0:
-                s2Count.pop(s2[l])
+            # If our window size exceeds the size of s1 we need to shrink our window
+            while (windowEnd - windowStart + 1) > len(s1):
+                remove = s2[windowStart]
                 
-            l = l + 1
-            if s2Count == s1Count: return True
+                if remove in charFreq:
+                    # We are removing this character from our window
+                    # If we reach the point where we are adding characters back into charFreq
+                    # then we must decrement matched since we no longer are matching that character fully
+                    if charFreq[remove] == 0:
+                        matched -= 1
+                    charFreq[remove] += 1
+                windowStart += 1
             
+            # If the matched count is equal to the total number of characters in charFreq
+            # then we have matched every character, hence we found a permutation
+            if matched == len(charFreq):
+                return True
         return False
