@@ -4,8 +4,11 @@ class Solution(object):
         :type height: List[int]
         :rtype: int
         """
-        left, right = 0, len(height) - 1
-        leftMax, rightMax = height[left], height[right]
+        #Time: O(N)
+        
+        left , right = 0, len(height) -1
+        leftMax = height[left]
+        rightMax = height[right]
         res = 0
         
         while left < right:
@@ -16,5 +19,5 @@ class Solution(object):
             else:
                 right -= 1
                 rightMax = max(rightMax, height[right])
-                res +=  rightMax - height[right]
+                res += rightMax - height[right]
         return res
