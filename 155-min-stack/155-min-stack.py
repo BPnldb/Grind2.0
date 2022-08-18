@@ -12,7 +12,7 @@ class MinStack(object):
         
         self.stack.append(val)
 
-        if self.minStack:
+        if len(self.minStack) is not 0 :
             val = min(val,self.minStack[-1])
        
         self.minStack.append(val)
