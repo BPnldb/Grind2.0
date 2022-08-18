@@ -12,18 +12,19 @@ class Solution(object):
         stack = []
         res = []
         
-        def backtrack(openN, closedN):
+        
+        self.backtrack(0,0,n,stack,res)
+        return res
+    def backtrack(self, openN, closedN,n,stack,res):
             if openN == closedN == n:
                 res.append("".join(stack))
                 return
             
             if openN < n:
                 stack.append("(")
-                backtrack(openN + 1, closedN)
+                self.backtrack(openN + 1, closedN,n,stack,res)
                 stack.pop()
             if closedN < openN:
                 stack.append(")")
-                backtrack(openN,closedN + 1)
+                self.backtrack(openN,closedN + 1,n,stack,res)
                 stack.pop()
-        backtrack(0,0)
-        return res
