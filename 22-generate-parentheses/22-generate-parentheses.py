@@ -9,22 +9,22 @@ class Solution(object):
         #valid IIF open == closed == n
         
         
-        stack = []
-        res = []
+        stack , res = [],[]
         
-        
-        self.backtrack(0,0,n,stack,res)
-        return res
-    def backtrack(self, openN, closedN,n,stack,res):
+        def backtrack(openN, closedN):
             if openN == closedN == n:
                 res.append("".join(stack))
-                return
-            
+                
             if openN < n:
                 stack.append("(")
-                self.backtrack(openN + 1, closedN,n,stack,res)
+                backtrack(openN +1 , closedN)
                 stack.pop()
             if closedN < openN:
                 stack.append(")")
-                self.backtrack(openN,closedN + 1,n,stack,res)
+                backtrack(openN,closedN+1)
                 stack.pop()
+        
+        
+        backtrack(0,0)
+        
+        return res
