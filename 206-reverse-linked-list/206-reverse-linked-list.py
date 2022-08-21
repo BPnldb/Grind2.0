@@ -11,11 +11,11 @@ class Solution(object):
         -break down into sub probs
         -instead of entire LL, reverse the remainder
          
-        """
+        
 
         
         #Time Complexity : O(N)
-        #Space Complexity : O(N)
+        #Space Complexity : O(1)
     
         start = None
         while head:
@@ -24,3 +24,17 @@ class Solution(object):
             start  = head
             head = temp
         return start
+        
+        """
+        
+        #recursive
+        # T:O(N)
+        # S:O(N) creates new memory stack every time it calls itself.
+        
+        #base case
+        if not head or not head.next:
+            return head
+        current = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return current
