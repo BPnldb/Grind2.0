@@ -9,7 +9,13 @@ class Solution(object):
         """
         :type root: TreeNode
         :rtype: TreeNode
-        """
+        
+        
+        
+        
+        # T: O(N)
+        # S: O(H)
+        
         
         if root:
             root.left, root.right = root.right, root.left
@@ -18,4 +24,19 @@ class Solution(object):
             self.invertTree(root.left)
             self.invertTree(root.right)
             
+        return root
+        """
+        
+    
+    
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            
+            if node:
+                node.left, node.right = node.right, node.left
+                
+                stack.append(node.left)
+                stack.append(node.right)
+                
         return root
