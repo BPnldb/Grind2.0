@@ -15,8 +15,9 @@ class Solution(object):
         stack = [root]
         while stack:
             node = stack.pop()
-            if node:
-                node.left, node.right = node.right, node.left
+            clay = node
+            if clay:
+                clay.left, clay.right = clay.right, clay.left
 
                 stack.append(node.right)
                 stack.append(node.left)
