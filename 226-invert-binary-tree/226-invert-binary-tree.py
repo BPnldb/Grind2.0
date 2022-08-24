@@ -10,9 +10,14 @@ class Solution(object):
         :type root: TreeNode
         :rtype: TreeNode
         """
-        #recursively
-        if root:
-            root.right, root.left = root.left, root.right
-            self.invertTree(root.right)
-            self.invertTree(root.left)
+        #iteratively
+        
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node:
+                node.left, node.right = node.right, node.left
+
+                stack.append(node.right)
+                stack.append(node.left)
         return root
