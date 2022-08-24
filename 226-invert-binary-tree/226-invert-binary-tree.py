@@ -15,10 +15,11 @@ class Solution(object):
         stack = [root]
         while stack:
             node = stack.pop()
-            clay = node
-            if clay:
-                clay.left, clay.right = clay.right, clay.left
+            if node:
+                node.left, node.right = node.right, node.left
 
-                stack.append(node.right)
-                stack.append(node.left)
+                if node.left:
+                    stack.append(node.left)
+                if node.right:
+                    stack.append(node.right)
         return root
