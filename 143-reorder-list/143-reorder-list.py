@@ -14,30 +14,33 @@ class Solution(object):
         #Space Complexity : O(1)
         
         #find middle
-        slow, fast = head, head
-        
+        slow,fast = head, head
         while fast and fast.next:
-            #shift pointers
             slow = slow.next
-            fast = fast.next.next 
+            fast = fast.next.next
+        
+        
              
                 
         #reverse second half
-        mid = slow.next #holds the 2nd half of list
-        slow.next = None #set to None now.
+        mid = slow.next
+        slow.next = None
         prev = None
         
-        
         while mid:
-            next = mid.next
-            mid.next  = prev
+            nextNode = mid.next
+            mid.next = prev
             prev = mid
-            mid = next
+            mid = nextNode
+            
+        
+        
+        
         #merge two halfs together
         first = head
         second = prev
         while second:
-            tmp1, tmp2 = first.next, second.next
+            temp1 , temp2 = first.next, second.next
             first.next = second
-            second.next = tmp1
-            first, second = tmp1, tmp2
+            second.next = temp1
+            first,second = temp1, temp2
