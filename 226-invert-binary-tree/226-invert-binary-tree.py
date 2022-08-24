@@ -13,6 +13,6 @@ class Solution(object):
         #recursively
         if root:
             root.right, root.left = root.left, root.right
-            self.invertTree(root.left)
             self.invertTree(root.right)
+            self.invertTree(root.left)
         return root
