@@ -1,0 +1,28 @@
+class Solution(object):
+    def findDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        
+        Time Complexity : O(N)
+        Space Complexity: O(1)
+        
+        """
+        
+        slow , fast  = 0, 0
+        
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+                
+        slow = 0
+        
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+        return slow
+            
+            
+            
