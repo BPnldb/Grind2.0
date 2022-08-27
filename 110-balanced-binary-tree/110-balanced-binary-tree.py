@@ -14,12 +14,12 @@ class Solution(object):
         def dfs(root):
             if not root:
                 
-                return [True, 0]
-            left = dfs(root.left)
-            right = dfs(root.right)
+                return (True,0)
+            i,left = dfs(root.left)
+            j,right = dfs(root.right)
             
             
-            balanced = left[0] and right[0] and abs(left[1] - right[1]) <= 1
-        
-            return [balanced, 1 + max(left[1], right[1])]
+            #balanced = left[0] and right[0] and abs(left[1] - right[1]) <= 1
+            
+            return (i and j and abs(left-right) <=1, 1 +max(left,right))
         return dfs(root)[0]
