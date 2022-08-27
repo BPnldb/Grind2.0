@@ -6,17 +6,22 @@ class TreeNode(object):
         self.right = right
 class Solution(object):
     def isSameTree(self, p, q):
-        stack = [(p, q)]
-        while stack:
-            node1, node2 = stack.pop()
-            if not node1 and not node2:
-                continue
-            elif None in [node1, node2]:
+        """
+        
+        Time: O(N)
+        Space : O(N)
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: bool
+        """
+        
+        
+        def dfs(i,j):
+            if not i and not j:
+                return True
+            if not i or not j:
                 return False
-            else:
-                if node1.val != node2.val:
-                    return False
-                stack.append((node1.left, node2.left))
-                stack.append((node1.right, node2.right))
-                
-        return True
+            if i.val != j.val:
+                return False
+            return dfs(i.left,j.left) and dfs(i.right, j.right)
+        return dfs(p,q)
