@@ -7,8 +7,7 @@
 class Solution(object):
     def isSubtree(self, root, subRoot):
         
-        if not subRoot:
-            return True
+        
         
         
         
@@ -33,6 +32,8 @@ class Solution(object):
         def dfs(s,t):
             if not s:
                 return False
+            if not t:
+                return True
             if isSameTree(s,t):
                 return True
             return (dfs(s.left, t) or dfs(s.right, t))
