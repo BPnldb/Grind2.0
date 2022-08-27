@@ -20,7 +20,7 @@ class Solution(object):
         #iterative DFS
         if not root:
             return 0
-        stack = [(root,1)]
+        stack = [[root,1]]
         
         count = 1
         while stack:
