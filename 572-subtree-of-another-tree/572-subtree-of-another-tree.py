@@ -9,8 +9,7 @@ class Solution(object):
         
         if not subRoot:
             return True
-        if not root:
-            return False
+        
         
         
         def isSameTree( p, q):
@@ -31,6 +30,11 @@ class Solution(object):
                 return False
             return (isSameTree(p.left,q.left) and isSameTree(p.right,q.right))
         
-        if isSameTree(root,subRoot):
-            return True
-        return (self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot))
+        def dfs(s,t):
+            if not s:
+                return False
+            if isSameTree(s,t):
+                return True
+            return (dfs(s.left, t) or dfs(s.right, t))
+    
+        return dfs(root,subRoot)
