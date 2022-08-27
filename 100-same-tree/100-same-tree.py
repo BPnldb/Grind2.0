@@ -14,14 +14,10 @@ class Solution(object):
         :type q: TreeNode
         :rtype: bool
         """
-        
-        
-        def dfs(i,j):
-            if not i and not j:
-                return True
-            if not i or not j:
-                return False
-            if i.val != j.val:
-                return False
-            return dfs(i.left,j.left) and dfs(i.right, j.right)
-        return dfs(p,q)
+        if not p and not q:
+            return True
+        if not p or not q:
+            return False
+        if p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
