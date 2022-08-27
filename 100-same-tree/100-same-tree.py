@@ -6,18 +6,13 @@ class TreeNode(object):
         self.right = right
 class Solution(object):
     def isSameTree(self, p, q):
-        """
-        
-        Time: O(N)
-        Space : O(N)
-        :type p: TreeNode
-        :type q: TreeNode
-        :rtype: bool
-        """
-        if not p and not q:
-            return True
-        if not p or not q:
-            return False
-        if p.val != q.val:
-            return False
-        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        def dfs(i,j):
+            if not i and not j:
+                return True
+            elif not i or not j:
+                return False
+            elif i.val == j.val:
+                return dfs(i.left, j.left) and dfs(i.right, j.right)
+            else:
+                return False
+        return dfs(p,q)
