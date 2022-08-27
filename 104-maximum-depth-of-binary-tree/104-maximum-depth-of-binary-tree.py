@@ -12,16 +12,29 @@ class Solution(object):
         """
         #recursive DFS
         
-        if  root:
-            
-            return 1 + max(self.maxDepth(root.left),self.maxDepth(root.right))
-        return 0
+        # if not root:
+        #     return 0
+        # return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
         
-        """"
+        
         #iterative DFS
+        if not root:
+            return 0
+        stack = [(root,1)]
+        
+        count = 1
+        while stack:
+            node, depth = stack.pop()
+            if node: #not null
+                count = max(count,depth)
+                stack.append([node.left, depth+1])
+                stack.append([node.right, depth + 1])
+        return count
+            
+            
         
         
-        
+        """
         #iterative BFS
         if not root:
             return 0
@@ -29,7 +42,7 @@ class Solution(object):
         level = 0
         
         q = deque([root])
-        while q is not None:
+        while q:
             for i in range(len(q)):
                 node = q.popleft()
                 if node.left:
@@ -37,4 +50,5 @@ class Solution(object):
                 if node.right:
                     q.append(node.right)
             level += 1
-        return level"""
+        return level 
+        """
