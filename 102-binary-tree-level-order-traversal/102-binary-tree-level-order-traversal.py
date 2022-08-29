@@ -15,7 +15,7 @@ class Solution(object):
         
         res = []
         if not root:
-            return res
+            return []
         q = deque([root])
         while q:
             values = []
