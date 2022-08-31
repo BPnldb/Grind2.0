@@ -20,15 +20,15 @@ class Solution(object):
         self.vals = {}
         
         
-        def dfs(node):
+        def dfs(node,target):
             if not node:
                 return False
             
             if node.val in self.vals:
                 return True
             
-            self.vals[k - node.val] = True
+            self.vals[target - node.val] = True
             
                 
-            return dfs(node.left) or dfs(node.right)
-        return dfs(root)
+            return dfs(node.left,target) or dfs(node.right,target)
+        return dfs(root,k)
