@@ -14,19 +14,25 @@ class Solution(object):
         
         
         res = []
-        q = collections.deque()
-        if root:
-            q.append(root)
-
+        if not root:
+            return []
+        q = deque([root])
         while q:
-            val = []
-
+            values = []
             for i in range(len(q)):
+                
                 node = q.popleft()
-                val.append(node.val)
-                if node.left:
+                
+                # if node.left:
+                #     q.append(node.left)
+                # if node.right:
+                #     q.append(node.right)
+                
+
+                if node:
+                    values.append(node.val)
                     q.append(node.left)
-                if node.right:
                     q.append(node.right)
-            res.append(val)
+            if values:
+                res.append(values)
         return res
