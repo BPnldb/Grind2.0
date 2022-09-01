@@ -17,8 +17,9 @@ class Solution(object):
         q = deque([root])
         while q:
             rightSide = None
-            for i in range(len(q)):
+            for _ in range(len(q)):
                 node = q.popleft()
+
                 if node:
                     rightSide = node
                     q.append(node.left)
@@ -26,3 +27,6 @@ class Solution(object):
             if rightSide:
                 res.append(rightSide.val)
         return res
+    
+    
+    
