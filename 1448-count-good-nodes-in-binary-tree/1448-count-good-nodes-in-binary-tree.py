@@ -15,13 +15,13 @@ class Solution(object):
                 return 0
             
             if node.val >= maxVal :
-                res = 1
-            else:
-                res = 0
+                self.res+=1
+            
             maxVal = max(node.val, maxVal)
             
-            res += dfs(node.left, maxVal)
-            res += dfs(node.right, maxVal)
+            dfs(node.left, maxVal)
+            dfs(node.right, maxVal)
             
-            return res
+            return self.res
+        self.res = 0
         return dfs(root, root.val)
