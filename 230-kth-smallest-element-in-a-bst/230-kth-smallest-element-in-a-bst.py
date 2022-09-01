@@ -12,18 +12,17 @@ class Solution(object):
         :rtype: int
         """
         
-        stack = []
-        curr = root
-
-        while stack or curr:
-            while curr:
-                stack.append(curr)
-                curr = curr.left
-            curr = stack.pop()
-            k -= 1
-            if k == 0:
-                return curr.val
-            curr = curr.right
+        res = []
+        def inorder(node,vals):
+            if not node:
+                return
+            
+            inorder(node.left,vals)
+            vals.append(node.val)
+            inorder(node.right, vals)
+        inorder(root, res)
+        
+        return res[k-1]
             
                 
                 
