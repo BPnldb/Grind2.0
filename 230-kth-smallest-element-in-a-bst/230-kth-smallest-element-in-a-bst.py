@@ -17,6 +17,8 @@ class Solution(object):
             if not node:
                 return
             
+            
+            
             inorder(node.left,vals)
             vals.append(node.val)
             inorder(node.right, vals)
