@@ -22,15 +22,17 @@ class Solution(object):
             for i in range(len(q)):
                 
                 node = q.popleft()
-                if node:
-                    values.append(node.val)
+                
                 # if node.left:
                 #     q.append(node.left)
                 # if node.right:
                 #     q.append(node.right)
                 
+
+                if node:
+                    values.append(node.val)
                     q.append(node.left)
                     q.append(node.right)
-            if len(values) > 0:
+            if values:
                 res.append(values)
         return res
