@@ -21,7 +21,7 @@ class Solution(object):
             vals.append(node.val)
             inorder(node.right, vals)
         inorder(root, res)
-        print(res)
+        
         return res[k-1]
             
                 
