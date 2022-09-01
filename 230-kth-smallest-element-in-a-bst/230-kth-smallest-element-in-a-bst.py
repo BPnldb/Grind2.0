@@ -13,15 +13,18 @@ class Solution(object):
         """
         
         res = []
-        def _inorder(node):
-            if not node: return
-            _inorder(node.left)
-            if len(res) == k:
+        def inorder(node,vals):
+            if not node:
                 return
-            res.append(node.val)
-            _inorder(node.right)
-        _inorder(root)
-        return res[-1]
+            
+            
+            
+            inorder(node.left,vals)
+            vals.append(node.val)
+            inorder(node.right, vals)
+        inorder(root, res)
+        
+        return res[k-1]
             
                 
                 
