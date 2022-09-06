@@ -19,6 +19,7 @@ class Solution(object):
         
         while top <= bot:
             midRow = (top + bot) // 2
+            print(matrix[midRow][cols-1])
             if target > matrix[midRow][cols - 1]:
                 top = midRow + 1
             elif target < matrix[midRow][0]:
