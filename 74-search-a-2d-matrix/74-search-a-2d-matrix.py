@@ -16,7 +16,7 @@ class Solution(object):
         top = 0
         bot = rows - 1
         
-        
+        #manipulates top and bottom for 2nd phase
         while top <= bot:
             midRow = (top + bot) // 2
             print(matrix[midRow][cols-1])
@@ -27,10 +27,11 @@ class Solution(object):
             else:
                 break
                 
-        if not (top <= bot):
+        if top > bot: # if no values
             return False
         
         
+        #BINARY search on CURRENT ROW
         midRow = (top + bot) // 2
         left, right = 0, cols -1 #right = right most position in the row
         
