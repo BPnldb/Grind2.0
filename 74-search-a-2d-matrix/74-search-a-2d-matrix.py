@@ -19,20 +19,24 @@ class Solution(object):
           bot = 3R
         """
         
-        rows = len(matrix) # 3 rows
-        cols = len(matrix[0]) # 4 columns 
+        #two Binary Search (inner)
+        rows, cols = len(matrix), len(matrix[0])
         
+        #binary search outer of rows 
         top = 0
-        bot = len(matrix) - 1 
+        bot = rows - 1
+        
         
         while top <= bot:
-            midRow = (top + bot) // 2
+            midRow = top + ((bot - top) // 2)
+            print(matrix[midRow][cols-1])
             if target > matrix[midRow][cols - 1]:
-                top = midRow +1
+                top = midRow + 1
             elif target < matrix[midRow][0]:
                 bot = midRow - 1
             else:
                 break
+                
         if not (top <= bot):
             return False
         
@@ -41,7 +45,7 @@ class Solution(object):
         right = cols - 1
         
         while left <= right:
-            mid = (left + right) //2
+            mid = left + ((right - left) //2)
             if target > matrix[midRow][mid]:
                 left = mid + 1
             elif target < matrix[midRow][mid]:
