@@ -9,39 +9,45 @@ class Solution(object):
         Space:O(1)
         """
         
-        #two Binary Search (inner)
-        rows, cols = len(matrix), len(matrix[0])
         
-        #binary search outer of rows 
+        """
+            R           R           R
+        [[1,3,5,7],[10,11,16,20],[23,30,34,60]]
+           cccc     cccc            cccc 
+           
+          top = 1R
+          bot = 3R
+        """
+        
+        rows = len(matrix) # 3 rows
+        cols = len(matrix[0]) # 4 columns 
+        
         top = 0
-        bot = rows - 1
+        bot = len(matrix) - 1 
         
-        #manipulates top and bottom for 2nd phase
         while top <= bot:
             midRow = (top + bot) // 2
-            print(matrix[midRow][cols-1])
             if target > matrix[midRow][cols - 1]:
-                top = midRow + 1
+                top = midRow +1
             elif target < matrix[midRow][0]:
                 bot = midRow - 1
             else:
                 break
-                
-        if top > bot: # if no values
+        if not (top <= bot):
             return False
         
         
-        #BINARY search on CURRENT ROW
-        midRow = (top + bot) // 2
-        left, right = 0, cols -1 #right = right most position in the row
+        left = 0
+        right = cols - 1
         
         while left <= right:
-            mid = (left + right) // 2
+            mid = (left + right) //2
             if target > matrix[midRow][mid]:
                 left = mid + 1
             elif target < matrix[midRow][mid]:
                 right = mid - 1
             else:
                 return True
-            
         return False
+        
+      
