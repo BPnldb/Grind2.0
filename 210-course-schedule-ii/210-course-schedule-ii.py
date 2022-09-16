@@ -1,56 +1,36 @@
-class Solution(object):
+from collections import deque,defaultdict
+class Solution:
     def findOrder(self, numCourses, prerequisites):
-        """
-        :type numCourses: int
-        :type prerequisites: List[List[int]]
-        :rtype: List[int]
-        """
-        adj_list = {i:[] for i in range(numCourses)}
+        #DFS
         
-        for u, v in prerequisites:
-            adj_list[u].append(v)
+        #-----
+        
+        
+        #BFS
+        
+        #indegree #arrows pointing to it
+        adj_list = defaultdict(list)
+        indegree = [0] * numCourses
+        
+        for pre, final in prerequisites:
+            adj_list[pre].append(final)
+            indegree[final] += 1
         print(adj_list)
+        print(indegree)
+        #only if the node with an indegre of 0.
+        #so if the node has nothing pointing to it
+        q = deque([i for i in range(numCourses) if indegree[i] == 0])
+        print(q)
         
-        visited = set() #shows visited vertex already
-        cycle = set() #detects a cycle
-        res = []
-        #so once we have created our adjacency list, we can get started with the DFS
+        topologicalSortedOrder = []
         
-        
-        
-        
-        def dfs(node):
-            #check if in cycle
-            #check if in visited
-            #if no conditions then continue
-            #add node to cycle
+        while len(q):
+            node = q.popleft()
+            topologicalSortedOrder.append(node)
             
-            #loop through the node's neighbors and call DFS
-                #check if it returns true or false
-                #if false then break immediately 
-            #if all else is TRUE, then
-            #remove from cycle
-            #add to visited
-            #append to result
-            #return true
-            if node in cycle:
-                return False
-            if node in visited:
-                return True
-            cycle.add(node)
-            
-            for neigh in adj_list[node]:
-                if dfs(neigh) == False:
-                    return False
-                
-            cycle.remove(node)
-            visited.add(node)
-            res.append(node)
-            return True
-        
-        for i in range(numCourses):
-            if dfs(i) == False:
-                return []
-        return res
-            
-            
+            #decrease the neighbor's node by 1 
+            for nei in adj_list[node]:
+                indegree[nei] -= 1
+                if indegree[nei] == 0:
+                    q.append(nei)
+        return topologicalSortedOrder[::-1] if len(topologicalSortedOrder) == numCourses else []
