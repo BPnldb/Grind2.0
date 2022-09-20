@@ -16,11 +16,17 @@ class Solution(object):
                 return 0
             
             visit.add((r,c))
-            return (1 + dfs(r + 1,c)+
-                        dfs(r - 1, c)+
-                        dfs(r, c + 1)+
-                        dfs(r, c - 1))
-        
+            maxArea = 1
+            # return (1 + dfs(r + 1,c)+
+            #             dfs(r - 1, c)+
+            #             dfs(r, c + 1)+
+            #             dfs(r, c - 1))
+            maxArea += dfs(r+1,c)
+            maxArea += dfs(r-1,c)
+            maxArea += dfs(r, c+1)
+            maxArea += dfs(r, c-1)
+            
+            return maxArea
         area = 0
         
         for r in range(ROWS):
