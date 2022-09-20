@@ -12,7 +12,7 @@ class Solution(object):
         
         def dfs(r, c): #position we pass in
             #base case out of bounds
-            if (r not in range(ROWS) or c not in range(COLS) or grid[r][c] == 0 or (r,c) in visit):
+            if (r < 0 or r == ROWS or c < 0 or c == COLS or grid[r][c] == 0 or (r,c) in visit):
                 return 0
             
             visit.add((r,c))
