@@ -1,16 +1,12 @@
-class Solution(object):
+class Solution:
     def twoSum(self, nums, target):
-        """
-        dic = {3:3, 2:2, }           }
-        comp =  6 - 3 = 3
-        comp = 6 - 2 = 4
-        comp = 6 - 4 = 2
-        """
+        hashMap = {}
         
-        dic = {}
         for i in range(len(nums)):
-            c = target - nums[i]
-            if c in dic:
-                return [dic[c],i]
+            compliment = target - nums[i] 
+            #checks if c = 7 = 9 - 2
+            #is in the hash, if not then continue
+            if compliment in hashMap:
+                return [hashMap[compliment],i]
             else:
-                dic[nums[i]] = i
+                hashMap[nums[i]] = i #add the value to hash
