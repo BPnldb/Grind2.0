@@ -1,28 +1,21 @@
-class Solution(object):
+class Solution:
     def isAnagram(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: bool
-        """
-        freq = {}
+        hashMap = {}
+        for i in range(len(s)):
+            if s[i] not in hashMap:
+                
+                hashMap[s[i]] = 1
+            else:
+                hashMap[s[i]] += 1
         
-        for i in s:
-            if i not in freq:
-                freq[i] = 1
+        for i in range(len(t)):
+            if t[i] in hashMap:
+                if hashMap[t[i]] > 0:
+                    hashMap[t[i]] -= 1
             else:
-                freq[i] += 1
-        for i in t:
-            if i in freq:
-                if freq[i] > 0:
-                    freq[i] -= 1
-            else:
-                freq[i] = 1
-        print(freq)
-        count = 0
-        for i in freq.values():
-            count += i
-        if count == 0:
+                hashMap[t[i]] = 1
+            
+        if sum(hashMap.values()) == 0:
             return True
         else:
             return False
