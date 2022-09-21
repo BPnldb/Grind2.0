@@ -24,4 +24,3 @@ class Solution(object):
         for u, v in edges:
             if not union(u,v):
                 return [u,v]
-g = Solution()
