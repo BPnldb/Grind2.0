@@ -5,18 +5,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def searchBST(self, root, val):
+    def searchBST(self, node, val):
         #dfs
         #root exist
         #root = val
         #dfs 
         
         
-        if root is None:
-            return
-        if root.val == val:
-            return root
+        def dfs(root):
+            if root is None:
+                return
+            if root.val == val:
+                return root
+            return dfs(root.left) or dfs(root.right)
+    
         
-        return self.searchBST(root.left,val) or self.searchBST(root.right,val)
+        return dfs(node)
        
         
