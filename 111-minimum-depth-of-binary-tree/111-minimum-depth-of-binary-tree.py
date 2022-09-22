@@ -7,13 +7,16 @@
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
         
-        if not root:
-            return 0
-        if root.left and root.right:
-            return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
-        elif root.left:
-            return 1 + self.minDepth(root.left)
-        elif root.right:
-            return 1 + self.minDepth(root.right)
-        else:
-            return 1
+        def dfs(node):
+            if not node:
+                return 0
+            if node.left and node.right:
+                return 1 + min(dfs(node.left), dfs(node.right))
+            elif node.left:
+                return 1 + dfs(node.left)
+            elif node.right:
+                return 1 + dfs(node.right)
+            
+            else:
+                return 1
+        return dfs(root)
