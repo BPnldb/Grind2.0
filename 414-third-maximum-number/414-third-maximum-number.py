@@ -10,6 +10,7 @@ class Solution(object):
         if len(maxHeap) < 3:
             return (-maxHeap[0])
         else:
-            heapq.heappop(maxHeap)
-            heapq.heappop(maxHeap)
+            for i in range(2):
+                heapq.heappop(maxHeap)
+            
             return -maxHeap[0]
