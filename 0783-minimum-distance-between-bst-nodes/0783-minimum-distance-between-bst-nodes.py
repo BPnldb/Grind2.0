@@ -10,19 +10,19 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        def dfs(node):
+        def dfs(node,result):
             if not node:
                 return
-            dfs(node.left)
-            res.append(node.val)
-            dfs(node.right)
+            dfs(node.left,result)
+            result.append(node.val)
+            dfs(node.right,result)
             
             return
         
         
         res = []
         minimum = float('inf') 
-        dfs(root)
+        dfs(root,res)
         for i in range(1,len(res)):
             minimum = min(minimum,res[i]-res[i-1])
         return minimum
