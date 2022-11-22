@@ -5,22 +5,23 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        hashMap = {}
+        freq = {}
         for i in range(len(s)):
-            if s[i] not in hashMap:
-                
-                hashMap[s[i]] = 1
+            if s[i] not in freq:
+                freq[s[i]] = 1
             else:
-                hashMap[s[i]] += 1
+                freq[s[i]] += 1
+        print(freq)
+        
         
         for i in range(len(t)):
-            if t[i] in hashMap:
-                if hashMap[t[i]] > 0:
-                    hashMap[t[i]] -= 1
+            if t[i] in freq:
+                if freq[t[i]] > 0:
+                    freq[t[i]] -= 1
             else:
-                hashMap[t[i]] = 1
-            
-        if sum(hashMap.values()) == 0:
-            return True
-        else:
-            return False
+                freq[t[i]] = 1
+        
+        count = 0
+        for v in freq.values():
+            count += v
+        return True if count == 0 else False
