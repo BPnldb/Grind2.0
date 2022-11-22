@@ -6,4 +6,4 @@ class Solution:
                 return True
             hashSet.add(nums[i])
 
-        
+        return False
